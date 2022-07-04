@@ -1,9 +1,9 @@
 # Procesador de Cheques
 
-This assignment was part of the the Full Stack Developer Program as taught in 2022 at the Technological Institute of Buenos Aires (ITBA).
+Este trabajo fue parte de los ejercicios de programación asignados a los estudiantes durante el desarrollo del programa Full-Stack Devloper, según fue dictado en 2022 en el del Instituto Tecnológico de Buenos Aires (ITBA). 
 
-## License
+## Licencia
 
-All material is provided under an MIT License unless otherwise specified.
+Todo el material es provisto bajo una licencia MIT a menos que se especifique lo contrario.
 
-MIT License: <https://mit-license.org/> or see the [`LICENSE`](https://github.com/rnsavinelli/procesador-de-cheques/blob/master/LICENSE) file.
+Licencia: [`LICENSE`](https://github.com/rnsavinelli/procesador-de-cheques/blob/master/LICENSE).
