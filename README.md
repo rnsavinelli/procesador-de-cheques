@@ -4,6 +4,4 @@ Este trabajo fue parte de los ejercicios de programación asignados a los estudi
 
 ## Licencia
 
-Todo el material es provisto bajo una licencia MIT a menos que se especifique lo contrario.
-
-Licencia: [`LICENSE`](https://github.com/rnsavinelli/procesador-de-cheques/blob/master/LICENSE).
+Todo el material es provisto bajo una [licencia MIT](https://github.com/rnsavinelli/procesador-de-cheques/blob/master/LICENSE) a menos que se especifique lo contrario.
