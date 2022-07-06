@@ -20,12 +20,12 @@
  SOFTWARE.
 """
 
-
+from pandas.core.groupby.generic import DataFrameGroupBy
+from pandas import DataFrame, read_csv
 from argparse import ArgumentParser, Namespace
 from datetime import datetime
 from types import NoneType
 from typing import Callable
-from pandas import DataFrame, read_csv
 import logging
 
 
@@ -90,7 +90,7 @@ def _exportar_cheques(dni: int, cheques: DataFrame, formato: str) -> None:
 
         case "CSV":
             timestamp: str = str(datetime.timestamp(datetime.now()))
-            file_name = "{}_{}.csv".format(str(dni), timestamp)
+            file_name: str = "{}_{}.csv".format(str(dni), timestamp)
             store_csv(file_name, cheques)
 
         case _:
@@ -99,13 +99,19 @@ def _exportar_cheques(dni: int, cheques: DataFrame, formato: str) -> None:
 
 # Si para un DNI, dado un número de cheque de una misma cuenta de origen, se repite,
 # se debe mostrar el error por pantalla, indicando que ese es el problema.
-def _verificar_cheques(cheques_del_usuario: DataFrame) -> int:
-    cheques_por_cuenta = cheques_del_usuario.groupby("NumeroCuentaOrigen")
+def _verificar_cheques(cheques: DataFrame) -> int:
+    cheques_agrupados_por_cuenta: DataFrameGroupBy = cheques.groupby(
+        "NumeroCuentaOrigen"
+    )
 
-    for cuenta in cheques_por_cuenta.groups.keys():
-        cheques = cheques_por_cuenta.get_group(cuenta)
-        col_NroCheque = cheques["NroCheque"]
-        if any(len(cheques[col_NroCheque == n]) > 1 for n in col_NroCheque.unique()):
+    for cuenta in cheques_agrupados_por_cuenta.groups.keys():
+        cheques_por_cuenta: DataFrame = cheques_agrupados_por_cuenta.get_group(cuenta)
+        nro_cheque_col: DataFrame = cheques_por_cuenta["NroCheque"]
+
+        if any(
+            len(cheques_por_cuenta[nro_cheque_col == nro_cheque]) > 1
+            for nro_cheque in nro_cheque_col.unique()
+        ):
             return ERROR
 
     return OK
