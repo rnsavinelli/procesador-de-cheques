@@ -90,7 +90,7 @@ def _exportar_cheques(dni: int, cheques: DataFrame, formato: str) -> None:
 
         case "CSV":
             timestamp: str = str(datetime.timestamp(datetime.now()))
-            file_name: str = "{}_{}.csv".format(str(dni), timestamp)
+            file_name: str = "{}{}.csv".format(str(dni), timestamp)
             store_csv(file_name, cheques)
 
         case _:
@@ -140,7 +140,7 @@ def _filtrar_por_dni(cheques: DataFrame, dni: int | NoneType) -> DataFrame:
         return cheques
 
 
-def run(
+def _run(
     file_url: str,
     dni: int,
     formato: str,
@@ -238,7 +238,7 @@ if __name__ == "__main__":
     args: Namespace = parser.parse_args()
 
     exit(
-        run(
+        _run(
             args.input_file,
             args.dni,
             args.output_format,
